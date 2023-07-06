@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  </head>
+  <body>
+    <div id="plot"></div>
+ 
+    <script>
+      // read the data from the CSV file
+      Plotly.d3.csv(
+        "pro.csv",
+        function (data) {
+          // extract the unique economies and ownership scores
+          const economies = [...new Set(data.map((row) => row.Economy))];
+          const ownershipScores = [...new Set(data.map((row) => row["Do men and women have equal ownership rights to immovable property?	Score"]))];
+          
+          // create a trace for each ownership score and economy
+          const traces = [];
+          ownershipScores.forEach((score) => {
+            const filteredData = data.filter((row) => row["Do men and women have equal ownership rights to immovable property?	Score"] === score);
+            const trace = {
+              x: filteredData.map((row) => row.Economy),
+              y: filteredData.map((row) => row["ASSETS SCORE"]),
+              name: "Score " + score,
+              type: "bar",
+            };
+            traces.push(trace);
+          });
+
+          // create the plot
+          const layout = {
+            title: "Gender Equality in Inheritance Laws across Economies",
+            xaxis: {
+              title: "Economy",
+            },
+            yaxis: {
+              title: "Assets Score",
+            },
+            barmode: "group",
+          };
+          const config = {
+            responsive: true,
+          };
+          Plotly.newPlot("plot", traces, layout, config);
+        }
+      );
+    </script> 
+  </body>
+</html>

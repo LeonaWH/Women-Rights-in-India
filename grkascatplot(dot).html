@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  </head>
+  <body>
+    <div id="plot"></div>
+
+    <script>
+      // read the data from the CSV file
+      Plotly.d3.csv(
+        "data.csv",
+        function (data) {
+          // extract the x and y data
+          const x = data.map((row) => row.Economy);
+          const y = data.map((row) => row["What is the legal age of marriage for girls?"]);
+
+          // create the plot
+          const trace = {
+            x: x,
+            y: y,
+            type: "bar",
+          };
+          const layout = {
+            title: "Legal Age of Marriage for Girls",
+            xaxis: {
+              title: "Economy",
+            },
+            yaxis: {
+              title: "Age",
+            },
+          };
+          const config = {
+            responsive: true,
+          };
+          Plotly.newPlot("plot", [trace], layout, config);
+        }
+      );
+    </script>
+  </body>
+</html>

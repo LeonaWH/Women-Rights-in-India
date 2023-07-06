@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<head>
+    <title>News</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="recent-news-boxes.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/d4369a04df.js" crossorigin="anonymous"></script>
+
+    <style>
+      #chatbot-icon {
+        z-index: 9999; 
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 70px;
+        height: 70px; 
+        background-color: #000000;
+        border-radius: 50%;
+        cursor: pointer;
+      }
+      #chatbot-icon:hover {
+        background-color: #737373;
+      }
+      
+      #chatbot {
+        position: fixed;
+        bottom: 20px; 
+        z-index:10;
+        right: 70px;
+        width: 350px;
+        background-color: white;
+        box-shadow: 0px 0px 10px #888;
+        display: none;
+        border-radius: 2px;
+        height: 600px; /* set a fixed height for the chatbot container */
+        overflow-y: scroll; /* enable vertical scrolling */
+      }
+      #chatbot-header {
+        background-color: #000000;
+        color: white;
+        padding: 10px;
+        font-weight: bold;
+        
+      }
+      #chatbot-log {
+        padding: 10px;
+        font-weight: bold;
+      }
+      #chatbot-message {
+        margin: 10px;
+        font-weight: bold;
+      }
+      #chatbot-input {
+        width: 80%;
+        box-sizing: border-box; 
+        padding: 10px;
+        border: 2px solid #000000;
+        border-radius: 5px;
+        margin: 10px;
+      }
+    #chatbot-submit{
+      padding: 10px;
+      margin: 10px;
+    }
+    .chatbot-btn{
+      align-items: center;
+      margin: 2px;
+      background-color: #fff;
+      border: 2px solid #000;
+      box-sizing: border-box;
+      color: #000;
+      cursor: pointer;
+      display: inline-flex;
+      fill: #000;
+      font-family: Inter,sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      height: 30px;
+      justify-content: center;
+      letter-spacing: -.8px;
+      line-height: 24px;
+      min-width: 140px;
+      outline: 0;
+      padding: 0 17px;
+      text-align: center;
+      text-decoration: none;
+      transition: all .3s;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+    }
+    
+    .chatbot-btn :focus {
+      color: #171e29;
+    }
+    
+    .chatbot-btn:hover {
+      border-color: #06f;
+      color: #06f;
+      fill: #06f;
+    }
+    
+    .chatbot-btn:active {
+      border-color: #06f;
+      color: #06f;
+      fill: #06f;
+    }
+    
+    </style>
+
+
+</head>
+<body>
+<header class="header">
+        <a href="#" class="logo"><img src="images/Logo WRI.png" alt="Logo" width="40" height="55" class="d-inline-block align-text-top"></a>
+        <nav class="nav-items">
+          <a href="index.html">Home</a>
+      <a href="index2.php">Search Cases</a>
+      <a href = "contactus.php">Contact Us</a>
+      <a href="news.html"><b><em>News</em></b></a>
+        </nav>
+</header>
+
+<div>
+  <button id="chatbot-icon">
+		<!-- Add an icon to the button, such as a chat bubble -->
+		<i class="fa-solid fa-comments fa-beat fa-sm " style="color:#fff"></i>
+	</button>
+	
+	<!-- Add HTML elements to display the chatbot interface -->
+	<div id="chatbot">
+		<div id="chatbot-header">
+			Chatbot 
+		</div>
+     
+      <div id="chatbot-log">
+        <p>Hey! Can I help you?</p>
+        <div id="options">
+          <button class="chatbot-btn" id="yes">Yes</button>
+          <button class="chatbot-btn" id="no">No</button>
+        </div>
+      </div> 
+      <div id="chatbot-form">
+        <input type="text" id="chatbot-input" placeholder="Type your message here...">
+        <button class="chatbot-btn" type="submit" id="chatbot-submit">Send</button>
+      </div>
+    </div> 
+<script>
+   const button = document.getElementById("chatbot-icon");
+		const chatbot = document.getElementById("chatbot");
+    chatbot.scrollTop = chatbot.scrollHeight;
+
+    function scrollToBottom() {
+  chatbot.scrollTop = chatbot.scrollHeight;
+}
+		
+      const chatbotLog = document.getElementById("chatbot-log");
+  const chatbotInput = document.getElementById("chatbot-input");
+  const chatbotForm = document.getElementById("chatbot-form");
+  const yesButton = document.getElementById("yes");
+  const noButton = document.getElementById("no");
+  button.addEventListener("click", function() {
+    if (chatbot.style.display === "none") {
+      chatbot.style.display = "block";
+    } else {
+      chatbot.style.display = "none";
+    }
+  });
+
+yesButton.addEventListener("click", function() { 
+  chatbotLog.innerHTML += "<p>Do you want to know more about women's rights in India?</p>";
+  chatbotLog.innerHTML += "<div id='options'><button class='chatbot-btn' id='yes2'>Sexual Harassment</button><button class='chatbot-btn' id='yes3'>Marriage and Divorce</button><button class='chatbot-btn' id='yes4'>Property Rights</button></div><br>";
+  chatbotForm.style.display = "block";
+
+  const yesButton2 = document.getElementById("yes2");
+  const yesButton3 = document.getElementById("yes3"); 
+  const yesButton4 = document.getElementById("yes4");
+  const yesButton15 = document.getElementById("yes15");
+
+  yesButton2.addEventListener("click", function() {
+    chatbotLog.innerHTML += "<a href=''>Click here for more information</a>";
+    chatbotForm.style.display = "block";
+  });
+
+yesButton3.addEventListener("click", function() {
+    chatbotLog.innerHTML += "<a href='https://www.ijlmh.com/judicial-approach-towards-curbing-the-sexual-harassment-of-women-at-work-place/'>Click here for more information</a>";
+    chatbotForm.style.display = "block";
+  });   
+
+// yesButton4.addEventListener("click", function() {
+//     chatbotLog.innerHTML += "<div id='options'>The various property rights:<br><button class='chatbot-btn' id='yes15'>The Dowry Prohibition Act, 1961</button><button class='chatbot-btn' id='yes6'>The Hindu Succession Act, 1956 </button><button class='chatbot-btn' id='yes7'>The Transfer of Property Act, 1882</button></div>";
+//     chatbotForm.style.display = "block";
+//   });
+yesButton4.addEventListener("click", function() {
+  chatbotLog.innerHTML += "<div id='options'>The various property rights:<br><button class='chatbot-btn' id='yes15'>The Dowry Prohibition Act, 1961</button><button class='chatbot-btn' id='yes6'>The Hindu Succession Act, 1956</button><button class='chatbot-btn' id='yes7'>The Transfer of Property Act, 1882</button></div>";
+  chatbotForm.style.display = "block";
+
+  const yesButton15 = document.getElementById("yes15");
+  const yesButton6 = document.getElementById("yes6");
+  const yesButton7 = document.getElementById("yes7");
+
+  yesButton15.addEventListener("click", function() {
+    chatbotLog.innerHTML += "<br><p>This act prohibits the giving or taking of dowry. It also provides for punishment for those who demand or give dowry. The act can be used to protect a woman's right to her property as it prohibits dowry-related demands.</p><a href='./propertylaws.html'>Click here for more information about other Property Rights</a>";
+    chatbotForm.style.display = "block";
+  });
+
+  yesButton6.addEventListener("click", function() {
+    chatbotLog.innerHTML += "<br><p>This act governs the inheritance of property among Hindus, including women. The act was amended in 2005 to give daughters equal rights in ancestral property. This means that daughters have the same right as sons in inheriting property from their parents. The act also provides for widows' rights in the husband's property.</p> <a href='./propertylaws.html'>Click here for more information about other Property Rights</a>";
+    chatbotForm.style.display = "block";
+  });
+ 
+  yesButton7.addEventListener("click", function() {
+    chatbotLog.innerHTML += "<br><p>This act governs the transfer of property in India. It provides for various modes of transfer, including sale, gift, and mortgage. Women have the same right as men to transfer their property using any of these modes.</p><a href='./propertylaws.html'>Click here for more information about other Property Rights</a>";
+    chatbotForm.style.display = "block";
+  });
+});
+
+//   const yesButton6 = document.getElementById("yes6");
+//     const yesButton7 = document.getElementById("yes7");
+//     const helloBtn = document.getElementById("Hellobtn");
+
+//     yesButton6.addEventListener("click", function() {
+//       chatbotLog.innerHTML += "<a href=''>Click here for more information about The Hindu Succession Act, 1956</a>";
+//       chatbotForm.style.display = "block";
+//     });
+
+//     yesButton7.addEventListener("click", function() {
+//       chatbotLog.innerHTML += "<a href=''>Click here for more information about The Transfer of Property Act, 1882</a>";
+//       chatbotForm.style.display = "block";
+//     });
+
+//     yesButton15.addEventListener("click", function() {
+//   chatbotLog.innerHTML += "<a href='#'>Click here for no info</a>";
+//   chatbotForm.style.display = "block";
+// });
+
+
+// yesButton15.addEventListener("click", function() { 
+//   chatbotLog.innerHTML += "<p>Do you want to know more about women's rights in India?</p>";
+//   chatbotLog.innerHTML += "<div id='options'><button class='chatbot-btn' id='Hellobtn'>Click me</button></div>";
+//   chatbotForm.style.display = "block";
+// }); 
+
+noButton.addEventListener("click", function() {
+  chatbotLog.innerHTML += "<p>Okay understood.</p>";
+  chatbotForm.style.display = "block";
+}); 
+
+chatbotForm.addEventListener("submit", function(event) {
+  event.preventDefault();
+  const userMessage = chatbotInput.value;
+  chatbotLog.innerHTML += "<p>You said: " + userMessage + "</p>";
+  chatbotInput.value = "";
+});});
+
+</script>
+
+
+<h2 class="news-title">Women in Focus: Breaking News and Stories</h2>
+<section class="recentNews">
+    <div class="container">
+      <br>
+      <div class="row">
+        <div class="ct-blog col-sm-6 col-md-4">
+          <div class="inner">
+            <div class="fauxcrop">
+              <a href="https://news.un.org/en/story/2023/03/1134132"><img alt="News Entry" src="https://global.unitednations.entermediadb.net/assets/mediadb/services/module/asset/downloads/preset/Collections/Embargoed/28-02-2023_UN-Women_India-01.jpg/image1170x530cropped.jpg"></a>
+            </div>
+            <div class="ct-blog-content">
+              <div class="ct-blog-date">
+                <span>March</span><strong>6</strong>
+              </div>
+              <h3 class="ct-blog-header">
+                CSW: Advancing womens rights since 1946
+              </h3>
+            </div>
+          </div>
+        </div>
+        <div class="ct-blog col-sm-6 col-md-4">
+          <div class="inner">
+            <div class="fauxcrop">
+              <a href="https://timesofindia.indiatimes.com/city/lucknow/womens-rights-only-on-paper/articleshow/98746782.cms?from=mdr"><img alt="News Entry" src="https://static.toiimg.com/thumb/msid-47529300,imgsize-110164,width-400,resizemode-4/47529300.jpg"></a>
+            </div>
+            <div class="ct-blog-content">
+              <div class="ct-blog-date">
+                <span>March</span><strong>18</strong>
+              </div>
+              <h3 class="ct-blog-header">
+                Womens rights only on paper
+              </h3>
+            </div>
+          </div>
+        </div>
+        <div class="ct-blog col-sm-6 col-md-4">
+          <div class="inner">
+            <div class="fauxcrop">
+              <a href="https://www.hindustantimes.com/opinion/pm-modi-prioritizes-women-led-development-in-g20-agenda-calling-for-global-action-and-investment-in-women-s-empowerment-to-achieve-sdgs-101680332791829.html"><img alt="News Entry" src="https://www.hindustantimes.com/ht-img/img/2023/04/01/550x309/The-G20-s-overarching-priority-of-economic-and-fin_1680332783845.jpg"></a>
+            </div>
+            <div class="ct-blog-content">
+              <div class="ct-blog-date">
+                <span>April</span><strong>1</strong>
+              </div>
+              <h3 class="ct-blog-header">
+                A historic leap to advance Indias G20 women agenda
+              </h3>
+            </div>
+          </div>
+        </div>
+        <div class="ct-blog col-sm-6 col-md-4">
+          <div class="inner">
+            <div class="fauxcrop">
+              <a href="https://indiaeducationdiary.in/bharatpe-group-partners-with-women-entrepreneurship-platform-to-foster-women-entrepreneurship-in-india/"><img alt="News Entry" src="https://indiaeducationdiary.in/wp-content/uploads/2020/08/Default-Image-IED.png"></a>
+            </div>
+            <div class="ct-blog-content">
+              <div class="ct-blog-date">
+                <span>April</span><strong>3</strong>
+              </div>
+              <h3 class="ct-blog-header">
+                BharatPe Group Partners With Women Entrepreneurship Platform To Foster Women Entrepreneurship In India
+              </h3>
+            </div>
+          </div>
+        </div>
+        <div class="ct-blog col-sm-6 col-md-4">
+          <div class="inner">
+            <div class="fauxcrop">
+              <a href="https://www.firstpost.com/tech/science/how-can-society-help-keep-indian-women-in-science-get-young-girls-interested-in-the-field-7939121.html"><img alt="News Entry" src="https://images.firstpost.com/wp-content/uploads/2020/01/ousa-chea-gKUC4TMhOiY-unsplash.jpg"></a>
+            </div>
+            <div class="ct-blog-content">
+              <div class="ct-blog-date">
+                <span>April</span><strong>4</strong>
+              </div>
+              <h3 class="ct-blog-header">
+                How can society help keep Indian women in Science, get young girls interested in the fie?
+              </h3>
+            </div>
+          </div>
+        </div>
+        <div class="ct-blog col-sm-6 col-md-4">
+          <div class="inner">
+            <div class="fauxcrop">
+              <a href="https://indianexpress.com/article/opinion/columns/misogyny-in-the-matrimonial-market-data-shows-indian-men-prefer-wives-without-jobs-8531246/"><img alt="News Entry" src="https://images.indianexpress.com/2018/11/No-working-women-please-copy.jpg?w=640"></a>
+            </div>
+            <div class="ct-blog-content">
+              <div class="ct-blog-date">
+                <span>April</span><strong>1</strong>
+              </div>
+              <h3 class="ct-blog-header">
+                Misogyny in the matrimonial market: Data shows Indian men prefer wives without jobs
+              </h3>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="btn-news btn-contests">
+        <a href="#"><color: black>Go up</style></a>
+      </div>
+    </div>
+  </section>
+  <footer class="footer">
+    <div class="copy">© 2023 TE MiniProject</div>
+  </footer>
+
+</body>
+</html>

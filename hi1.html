@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  </head>
+  <body>
+    <div id="plot"></div>
+ 
+    <script>
+      // read the data from the CSV file
+      Plotly.d3.csv(
+        "bacha.csv", 
+        function (data) {
+          // compute the score count for each region
+          const regions = [...new Set(data.map((row) => row.Region))];
+          const scoreCounts = regions.map((region) => {
+            const filteredData = data.filter((row) => row.Region === region && row.Score > 0);
+            const scoreCount = filteredData.length;
+            return {
+              region: region,
+              scoreCount: scoreCount,
+            };
+          });
+
+          // create the plot
+          const trace = {
+            x: scoreCounts.map((row) => row.region),
+            y: scoreCounts.map((row) => row.scoreCount),
+            type: "bar",
+          }; 
+          const layout = {
+            title: "Average Length of Paid Maternity Leave by Region",
+            xaxis: {
+              title: "Region",
+            },
+            yaxis: {
+              title: "Score Count",
+            },
+          };
+          const config = {
+            responsive: true,
+          };
+          Plotly.newPlot("plot", [trace], layout, config);
+        }
+      );
+    </script>
+  </body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  </head>
+  <body>
+    <div id="plot"></div>
+
+    <script>
+      // define the file names
+      const files = ["2020.csv", "2019.csv", "2017.csv"];
+
+      // initialize the data array
+      const data = [];
+
+      // read each file and append its data to the data array
+      for (let i = 0; i < files.length; i++) {
+        Plotly.d3.csv(files[i], function (rows) {
+          // fill in missing values using linear interpolation
+          rows.forEach((row, index) => {
+            if (row["What is the legal age of marriage for girls?"] === "") {
+              // look for the next non-missing value
+              let nextIndex = index + 1;
+              while (
+                nextIndex < rows.length &&
+                rows[nextIndex]["What is the legal age of marriage for girls?"] === ""
+              ) {
+                nextIndex++;
+              }
+
+              if (nextIndex < rows.length) {
+                // interpolate the missing value
+                const prevValue = rows[index - 1]["What is the legal age of marriage for girls?"];
+                const nextValue = rows[nextIndex]["What is the legal age of marriage for girls?"];
+                const interpolatedValue = prevValue + ((nextValue - prevValue) / (nextIndex - index)) * 1;
+                row["What is the legal age of marriage for girls?"] = interpolatedValue;
+              }
+            }
+          });
+
+          // extract the x and y data
+          const x = rows.map((row) => row.Year);
+          const y = rows.map(
+            (row) => row["What is the legal age of marriage for girls?"]
+          );
+
+          // create the trace and append it to the data array
+          const trace = {
+            x: x,
+            y: y,
+            type: "scatter",
+            name: files[i],
+          };
+          data.push(trace);
+
+          // if all files have been read, create the plot
+          if (data.length === files.length) {
+            const layout = {
+              title: "Legal Age of Marriage for Girls",
+              xaxis: {
+                title: "Year",
+              },
+              yaxis: {
+                title: "Age",
+              },
+            };
+            const config = {
+              responsive: true,
+            };
+            Plotly.newPlot("plot", data, layout, config);
+          }
+        });
+      }
+    </script>
+  </body>
+</html>
+ 

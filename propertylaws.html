@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<head>
+    <title>Property Laws</title>
+    <link rel="stylesheet" href="trialrights.css">
+    <script src="script.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/d4369a04df.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <style>
+      #chatbot-icon {
+        z-index: 9999; 
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 70px;
+        height: 70px; 
+        background-color: #000000;
+        border-radius: 50%;
+        cursor: pointer;
+      }
+      #chatbot-icon:hover {
+        background-color: #737373;
+      }
+      
+      #chatbot {
+        position: fixed;
+        bottom: 20px; 
+        z-index:10;
+        right: 70px;
+        width: 350px;
+        background-color: white;
+        box-shadow: 0px 0px 10px #888;
+        display: none;
+        border-radius: 2px;
+        height: 300px; /* set a fixed height for the chatbot container */
+        overflow-y: scroll; /* enable vertical scrolling */
+      }
+      #chatbot-header {
+        background-color: #000000;
+        color: white;
+        padding: 10px;
+        font-weight: bold;
+        
+      }
+      #chatbot-log {
+        padding: 10px;
+        font-weight: bold;
+      }
+      #chatbot-message {
+        margin: 10px;
+        font-weight: bold;
+      }
+      #chatbot-input {
+        width: 80%;
+        box-sizing: border-box; 
+        padding: 10px;
+        border: 2px solid #000000;
+        border-radius: 5px;
+        margin: 10px;
+      }
+    #chatbot-submit{
+      padding: 10px;
+      margin: 10px;
+    }
+    .chatbot-btn{
+      align-items: center;
+      margin: 2px;
+      background-color: #fff;
+      border: 2px solid #000;
+      box-sizing: border-box;
+      color: #000;
+      cursor: pointer;
+      display: inline-flex;
+      fill: #000;
+      font-family: Inter,sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      height: 30px;
+      justify-content: center;
+      letter-spacing: -.8px;
+      line-height: 24px;
+      min-width: 140px;
+      outline: 0;
+      padding: 0 17px;
+      text-align: center;
+      text-decoration: none;
+      transition: all .3s;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+    }
+    
+    .chatbot-btn :focus {
+      color: #171e29;
+    }
+    
+    .chatbot-btn:hover {
+      border-color: #06f;
+      color: #06f;
+      fill: #06f;
+    }
+    
+    .chatbot-btn:active {
+      border-color: #06f;
+      color: #06f;
+      fill: #06f;
+    }
+    
+    </style>
+
+
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+    
+    <header class="header">
+      <a href="#" class="logo"><img src="images/Logo WRI.png" alt="Logo" width="40" height="55" class="d-inline-block align-text-top"></a>
+      <nav class="nav-items">
+        <a href="index.html">Home</a>
+      <a href="index2.php">Search Cases</a>
+      <a href = "contactus.php">Contact Us</a>
+      <a href="news.html"><b><em>News</em></b></a>
+      </nav>
+    </header>
+
+    <div class="intropara">
+      <h3><b><b>Women's Rights in India</b></b></h3>
+      <p><i>Women have the legal right to own, inherit, and transfer property. There are laws and legal provisions related to women's property rights in India.</i></p>
+     
+    </div>
+<br>
+<div>
+  <button id="chatbot-icon">
+		<!-- Add an icon to the button, such as a chat bubble -->
+		<i class="fa-solid fa-comments fa-beat fa-sm " style="color:#fff"></i>
+	</button>
+	
+	<!-- Add HTML elements to display the chatbot interface -->
+	<div id="chatbot">
+		<div id="chatbot-header">
+			Chatbot 
+		</div>
+     
+      <div id="chatbot-log">
+        <p>Hey! Can I help you?</p>
+        <div id="options">
+          <button class="chatbot-btn" id="yes">Yes</button>
+          <button class="chatbot-btn" id="no">No</button>
+        </div>
+      </div> 
+      <div id="chatbot-form">
+        <input type="text" id="chatbot-input" placeholder="Type your message here...">
+        <button class="chatbot-btn" type="submit" id="chatbot-submit">Send</button>
+      </div>
+    </div> 
+<script>
+   const button = document.getElementById("chatbot-icon");
+		const chatbot = document.getElementById("chatbot");
+    chatbot.scrollTop = chatbot.scrollHeight;
+
+    function scrollToBottom() {
+  chatbot.scrollTop = chatbot.scrollHeight;
+}
+		
+      const chatbotLog = document.getElementById("chatbot-log");
+  const chatbotInput = document.getElementById("chatbot-input");
+  const chatbotForm = document.getElementById("chatbot-form");
+  const yesButton = document.getElementById("yes");
+  const noButton = document.getElementById("no");
+  button.addEventListener("click", function() {
+    if (chatbot.style.display === "none") {
+      chatbot.style.display = "block";
+    } else {
+      chatbot.style.display = "none";
+    }
+  });
+
+yesButton.addEventListener("click", function() { 
+  chatbotLog.innerHTML += "<p>Do you want to know more about women's rights in India?</p>";
+  chatbotLog.innerHTML += "<div id='options'><button class='chatbot-btn' id='yes2'>Sexual Harassment</button><button class='chatbot-btn' id='yes3'>Marriage and Divorce</button><button class='chatbot-btn' id='yes4'>Property Rights</button></div><br>";
+  chatbotForm.style.display = "block";
+
+  const yesButton2 = document.getElementById("yes2");
+  const yesButton3 = document.getElementById("yes3"); 
+  const yesButton4 = document.getElementById("yes4");
+  const yesButton15 = document.getElementById("yes15");
+
+  yesButton2.addEventListener("click", function() {
+    chatbotLog.innerHTML += "<a href=''>Click here for more information</a>";
+    chatbotForm.style.display = "block";
+  });
+
+yesButton3.addEventListener("click", function() {
+    chatbotLog.innerHTML += "<a href='https://www.ijlmh.com/judicial-approach-towards-curbing-the-sexual-harassment-of-women-at-work-place/'>Click here for more information</a>";
+    chatbotForm.style.display = "block";
+  });   
+
+// yesButton4.addEventListener("click", function() {
+//     chatbotLog.innerHTML += "<div id='options'>The various property rights:<br><button class='chatbot-btn' id='yes15'>The Dowry Prohibition Act, 1961</button><button class='chatbot-btn' id='yes6'>The Hindu Succession Act, 1956 </button><button class='chatbot-btn' id='yes7'>The Transfer of Property Act, 1882</button></div>";
+//     chatbotForm.style.display = "block";
+//   });
+yesButton4.addEventListener("click", function() {
+  chatbotLog.innerHTML += "<div id='options'>The various property rights:<br><button class='chatbot-btn' id='yes15'>The Dowry Prohibition Act, 1961</button><button class='chatbot-btn' id='yes6'>The Hindu Succession Act, 1956</button><button class='chatbot-btn' id='yes7'>The Transfer of Property Act, 1882</button></div>";
+  chatbotForm.style.display = "block";
+
+  const yesButton15 = document.getElementById("yes15");
+  const yesButton6 = document.getElementById("yes6");
+  const yesButton7 = document.getElementById("yes7");
+
+  yesButton15.addEventListener("click", function() {
+    chatbotLog.innerHTML += "<br><p>This act prohibits the giving or taking of dowry. It also provides for punishment for those who demand or give dowry. The act can be used to protect a woman's right to her property as it prohibits dowry-related demands.</p><a href='./propertylaws.html'>Click here for more information about other Property Rights</a>";
+    chatbotForm.style.display = "block";
+  });
+
+  yesButton6.addEventListener("click", function() {
+    chatbotLog.innerHTML += "<br><p>This act governs the inheritance of property among Hindus, including women. The act was amended in 2005 to give daughters equal rights in ancestral property. This means that daughters have the same right as sons in inheriting property from their parents. The act also provides for widows' rights in the husband's property.</p> <a href='./propertylaws.html'>Click here for more information about other Property Rights</a>";
+    chatbotForm.style.display = "block";
+  });
+ 
+  yesButton7.addEventListener("click", function() {
+    chatbotLog.innerHTML += "<br><p>This act governs the transfer of property in India. It provides for various modes of transfer, including sale, gift, and mortgage. Women have the same right as men to transfer their property using any of these modes.</p><a href='./propertylaws.html'>Click here for more information about other Property Rights</a>";
+    chatbotForm.style.display = "block";
+  });
+});
+
+//   const yesButton6 = document.getElementById("yes6");
+//     const yesButton7 = document.getElementById("yes7");
+//     const helloBtn = document.getElementById("Hellobtn");
+
+//     yesButton6.addEventListener("click", function() {
+//       chatbotLog.innerHTML += "<a href=''>Click here for more information about The Hindu Succession Act, 1956</a>";
+//       chatbotForm.style.display = "block";
+//     });
+
+//     yesButton7.addEventListener("click", function() {
+//       chatbotLog.innerHTML += "<a href=''>Click here for more information about The Transfer of Property Act, 1882</a>";
+//       chatbotForm.style.display = "block";
+//     });
+
+//     yesButton15.addEventListener("click", function() {
+//   chatbotLog.innerHTML += "<a href='#'>Click here for no info</a>";
+//   chatbotForm.style.display = "block";
+// });
+
+
+// yesButton15.addEventListener("click", function() { 
+//   chatbotLog.innerHTML += "<p>Do you want to know more about women's rights in India?</p>";
+//   chatbotLog.innerHTML += "<div id='options'><button class='chatbot-btn' id='Hellobtn'>Click me</button></div>";
+//   chatbotForm.style.display = "block";
+// }); 
+
+noButton.addEventListener("click", function() {
+  chatbotLog.innerHTML += "<p>Okay understood.</p>";
+  chatbotForm.style.display = "block";
+}); 
+
+chatbotForm.addEventListener("submit", function(event) {
+  event.preventDefault();
+  const userMessage = chatbotInput.value;
+  chatbotLog.innerHTML += "<p>You said: " + userMessage + "</p>";
+  chatbotInput.value = "";
+});});
+
+</script>
+<section class="articles">
+  <article>
+    <div class="article-wrapper">
+      
+      <div class="article-body">
+        <h2>The Transfer of Property Act, 1882</h2>
+        <hr color="black" size="5px">
+        <p>
+          This act, namely The Transfer of Property Act, 1882, is a comprehensive legal framework that regulates the transfer of property in India through modes such as sale, gift, and mortgage. It grants women the same rights as men to transfer property and ensures transparent and lawful property transfer procedures.
+        </p>
+        <button class="read-more-btn"><a href="https://www.indiacode.nic.in/handle/123456789/1362//simple-search?page-token=aaf6e6a44027&page-token-value=5f284193675cf974400648918acfeab0&nccharset=29D72624&location=123456789%2F1362&query=sexual+assault&rpp=10&sort_by=score&order=desc" class="read-more">
+          Read more <span class="sr-only">about this is some title</span>
+        </a></button>
+        
+      </div>
+    </div>
+  </article>
+  <article>
+    <div class="article-wrapper">
+      
+      <div class="article-body">
+        <h2>Hindu Succession Act, 2005</h2>
+        <hr color="black" size="5px">
+        <p>
+          Act of the Parliament of India enacted to amend and codify the law relating to intestate or unwilled succession, among Hindus, Buddhists, Jains, and Sikhs. The Act lays down a uniform and comprehensive system of inheritance and succession into one Act. The Hindu woman's limited estate is abolished by the Act. Any property possessed by a Hindu female is to be held by her absolute property and she is given full power to deal with it and dispose it of by will as she likes.Under the Hindu Succession Act, 2005, females are granted ownership of all property acquired either before or after the signing of the Act, abolishing their "limited owner" status.
+        </p>
+        <button class="read-more-btn"><a href="docs\Property\laws\THE HINDU SUCCESSION ACT, 1956.pdf" class="read-more">
+          Read more <span class="sr-only">about this is some title</span>
+        </a></button>
+        
+      </div>
+    </div>
+  </article>
+  <article>
+    <div class="article-wrapper">
+      
+      <div class="article-body">
+        <h2>Muslim Personal Law (Shariat) Application Act, 1937</h2>
+        <hr color="black" size="5px">
+        <p>
+          Inheritance for Muslims in India is governed by this Act. It is a short statute with five provisions only. This law deals with marriage, succession, inheritance and charities among Muslims. This legislation that codifies Shariat recognises two kinds of legal heirs- sharers and residuaries. Daughters cannot inherit more than half of what the sons inherit. The estate of a Muslim can only pass to a Muslim. Under Shariat law, only 1/3 of the estate can be willed in favour of anyone.
+        </p>
+        <button class="read-more-btn"><a href="docs\Property\laws\Muslim Personal Law (Shariat) Application Act, 1937.pdf" class="read-more">
+          Read more <span class="sr-only">about this is some title</span>
+        </a></button>
+        
+      </div>
+    </div>
+  </article>
+</section>
+
+<section class="articles">
+  <article>
+    <div class="article-wrapper">
+      
+      <div class="article-body">
+        <h2>Section 498A</h2>
+        <hr color="black" size="5px">
+        <p>
+          Deals with the offense of cruelty by husband or his relatives towards a married woman, which includes deprivation of her property.
+        </p>
+        <button class="read-more-btn"><a href="https://www.indiacode.nic.in/handle/123456789/1362//simple-search?page-token=aaf6e6a44027&page-token-value=5f284193675cf974400648918acfeab0&nccharset=29D72624&location=123456789%2F1362&query=sexual+assault&rpp=10&sort_by=score&order=desc" class="read-more">
+          Read more <span class="sr-only">about this is some title</span>
+        </a></button>
+        
+      </div>
+    </div>
+  </article>
+  <article>
+    <div class="article-wrapper">
+      
+      <div class="article-body">
+        <h2>The Dowry Prohibition Act, 1961</h2>
+        <hr color="black" size="5px">
+        <p>
+          This act prohibits the giving or taking of dowry. It also provides for punishment for those who demand or give dowry. The act can be used to protect a woman's right to her property as it prohibits dowry-related demands.
+        </p>
+        <button class="read-more-btn"><a href="https://www.indiacode.nic.in/handle/123456789/1362//simple-search?page-token=aaf6e6a44027&page-token-value=5f284193675cf974400648918acfeab0&nccharset=29D72624&location=123456789%2F1362&query=sexual+assault&rpp=10&sort_by=score&order=desc" class="read-more">
+          Read more <span class="sr-only">about this is some title</span>
+        </a></button>
+      </div>
+    </div>
+  </article>
+  <article>
+    <div class="article-wrapper">
+      
+      <div class="article-body">
+        <h2>The Protection of Women from Domestic Violence Act, 2005</h2>
+        <hr color="black" size="5px">
+        <p>
+          This act provides for the protection of women from domestic violence, including emotional, verbal, and economic abuse. The act can be used to protect a woman's right to her property if she is subjected to economic abuse by her husband or his relatives.
+        </p>
+        <button class="read-more-btn"><a href="https://www.indiacode.nic.in/handle/123456789/1362//simple-search?page-token=aaf6e6a44027&page-token-value=5f284193675cf974400648918acfeab0&nccharset=29D72624&location=123456789%2F1362&query=sexual+assault&rpp=10&sort_by=score&order=desc" class="read-more">
+          Read more <span class="sr-only">about this is some title</span>
+        </a></button>
+      </div>
+    </div>
+  </article>
+</section>
+<hr>
+<p class="pdftitle"><em>Browse through Property Laws Related Judgments</em></p>
+
+<section class="recentNews">
+  <div class="container">
+    <br>
+    <div class="row">
+      <div class="ct-blog col-sm-6 col-md-4">
+        <div class="inner">
+
+          <div class="ct-blog-content">
+            <div class="ct-blog-date">
+            </div>
+            <h4 class="ct-blog-header">
+              Civil Appeal No. 226 of 2010</a>
+              <br>
+              <br>
+              <button class="read-more-btn" onclick="displayPDF()">Read More</button>
+              <div id="pdf-overlay">
+                <div class="align-right">
+                <button class="close-btn" onclick="closePDF()"> x </button>
+              </div>
+              </div>
+              <div id="pdf-container"></div>
+
+            </h4>
+          </div>
+        </div>
+      </div>
+      
+    
+      <div class="ct-blog col-sm-6 col-md-4">
+        <div class="inner">
+
+          <div class="ct-blog-content">
+            <div class="ct-blog-date">
+            </div>
+            <h4 class="ct-blog-header">
+              Civil Appeal No. 375 of 2007</a>
+              <br>
+              <br>
+              <button class="read-more-btn" onclick="displayPDF2()">Read More</button>
+              <div id="pdf-overlay">
+                <div class="align-right">
+                <button class="close-btn" onclick="closePDF()"> x </button>
+              </div>
+              </div>
+              <div id="pdf-container"></div>
+
+            </h4>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="ct-blog col-sm-6 col-md-4">
+        <div class="inner">
+          <div class="ct-blog-content">
+            <div class="ct-blog-date">
+            </div>
+            <h4 class="ct-blog-header">
+              Civil Appeal No. 1110 of 2006</a>
+              <br>
+              <br>
+              <button class="read-more-btn" onclick="displayPDF3()">Read More</button>
+              <div id="pdf-overlay">
+                <div class="align-right">
+                <button class="close-btn" onclick="closePDF()"> x </button>
+              </div>
+              </div>
+              <div id="pdf-container"></div>
+            </h4>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="ct-blog col-sm-6 col-md-4">
+        <div class="inner">
+
+          <div class="ct-blog-content">
+            <div class="ct-blog-date">
+            </div>
+            <h4 class="ct-blog-header">
+              Civil Appeal No. 5894 of 2019</a>
+              <br>
+              <br>
+              <button class="read-more-btn" onclick="displayPDF4()">Read More</button>
+              <div id="pdf-overlay">
+                <div class="align-right">
+                <button class="close-btn" onclick="closePDF()"> x </button>
+              </div>
+              </div>
+              <div id="pdf-container"></div>
+
+            </h4>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="ct-blog col-sm-6 col-md-4">
+        <div class="inner">
+
+          <div class="ct-blog-content">
+            <div class="ct-blog-date">
+            </div>
+            <h4 class="ct-blog-header">
+              Civil Appeal No. 6659 of 2011</a>
+              <br>
+              <br>
+              <button class="read-more-btn" onclick="displayPDF5()">Read More</button>
+              <div id="pdf-overlay">
+                <div class="align-right">
+                <button class="close-btn" onclick="closePDF()"> x </button>
+              </div>
+              </div>
+              <div id="pdf-container"></div>
+
+            </h4>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="ct-blog col-sm-6 col-md-4">
+        <div class="inner">
+
+          <div class="ct-blog-content">
+            <div class="ct-blog-date">
+            </div>
+            <h4 class="ct-blog-header">
+              Civil Appeal Nos. 174-175 of 2016</a>
+              <br>
+              <br>
+              <button class="read-more-btn" onclick="displayPDF6()">Read More</button>
+              <div id="pdf-overlay">
+                <div class="align-right">
+                <button class="close-btn" onclick="closePDF()"> x </button>
+              </div>
+              </div>
+              <div id="pdf-container"></div>
+
+            </h4>
+          </div>
+        </div>
+      </div>
+
+
+    <div class="btn-news btn-contests">
+      <a href="#">Go Up</a>
+    </div>
+  </div>
+</section>
+<footer class="footer">
+  <div class="copy">© 2023 TE MiniProject</div>
+</footer>
+</body>
+
+</html>
